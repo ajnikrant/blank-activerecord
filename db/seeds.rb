@@ -137,5 +137,5 @@ aw4=AthleteWorkout.create(athlete_id: ath4.id, workout_id: workout4.id, gym: "Ru
 aw5=AthleteWorkout.create(athlete_id: ath5.id, workout_id: workout5.id, gym: "That creepy gym on the corner", location: "Nowhereville, KS")
 aw7=AthleteWorkout.create(athlete_id: ath1.id, workout_id: workout3.id, gym: "Gold's Gym", location: "Dallas, TX")
 
-puts "successfully seeded database! woo!"
+puts "Successfully seeded the database! Woo!"
 

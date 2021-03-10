@@ -1,5 +1,12 @@
 class Interface 
 
+    attr_accessor :athlete
+    attr_reader :prompt
+
+    def initialize
+        @prompt = TTY::Prompt.new
+    end
+
     def run
         welcome
         ask_for_login_or_register
@@ -13,20 +20,10 @@ class Interface
 
 
      def ask_for_login_or_register
-          puts "Would you like to login or register?"
-        #Asking the user for input (allow the user to type something)
-        answer = STDIN.gets.chomp
-        if answer == "login"
-            login_helper
-        elsif answer == "register"
-            register_helper
-        else
-            generic_warning_message
-        end
-
-        # prompt.select "Would you like to login or register" do |menu|
-        #     menu.choice "Login", -> { login_helper }
-        #     menu.choice "Register", -> {register_helper}
+         prompt.select "Would you like to login or register" do |menu|
+             menu.choice "Login", -> { login_helper }
+             menu.choice "Register", -> {register_helper}
+         end
      end
      
      def login_helper
@@ -39,42 +36,63 @@ class Interface
         @athlete = Athlete.register_method
     end
 
-    def generic_warning_message
-        puts "That is not a valid entry"
-        puts "Please enter login or register"
-    end
-
     def main_menu
         @athlete.reload
         system 'clear'
-        sleep 2
+        sleep 1
         puts "Welcome, #{@athlete.username}!"
         prompt.select "What do you want to do today?" do |menu|
-            menu.choice "See all categories", -> {see_all_categories_helper}
-            menu.choice "See my posts", -> {see_my_posts_helper}
-            menu.choice "Create a POst", -> {create_a_post_helper}
-            menu.choice "Exit app", -> {puts "goodbye"}
+            menu.choice "View Exercises", -> {full_exercise_menu}
+            menu.choice "View Workouts", -> {view_workout_helper}
+            menu.choice "View or Complete Saved Workouts", -> {saved_workout_helper}
+            menu.choice "My Completed Workouts", -> {completed_workout_helper}
+            menu.choice "Logout/Exit app", -> {puts "goodbye"}
         end
+
     end
 
-
-    def create_a_post_helper
-        # Post.create(...)
-    end
-
-
-    def see_my_posts_helper
-        @user.display_posts
+    def test
+        puts "test!"
+        sleep(1.5)
         main_menu
     end
+    
+    def full_exercise_menu
+        x=view_exercise_helper
+        prompt.select "Select an exercise to view details" do |menu|
+            for i in x do
+                menu.choice "#{i.name}", -> { pp i }
+            end
+            menu.choice "Main Menu", -> {main_menu}
+        end
 
-
-
-    def see_all_categories_helper
 
     end
 
+    def view_exercise_helper
+        # puts "Here are all the available exercises:"
+        # sleep(1.5)
+      Exercise.all#.map{|exercise| exercise.name}
+    end
 
-   
+    def view_workout_helper
+        # puts "Here is the list of workouts available:"
+        # @workout = Workout.workout_helper_method
 
+
+        x=Workout.all
+        prompt.select "Select a workout to view details" do |menu|
+            for i in x do
+                menu.choice "#{i.name}", -> { pp i.exercises 
+            prompt.select "" do |menu|
+            menu.choice "Main Menu", -> {main_menu}
+            end
+            }
+            end
+            menu.choice "Main Menu", -> {main_menu}
+        end
+
+    end
+
+    
 end

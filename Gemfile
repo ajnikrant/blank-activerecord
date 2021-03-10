@@ -10,3 +10,6 @@ gem "pry"
 gem 'activerecord-reset-pk-sequence'
 gem 'colorize'
 # gem 'gemoji'
+
+gem 'faker'
+gem 'tty-prompt'

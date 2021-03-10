@@ -135,7 +135,7 @@ aw2=AthleteWorkout.create(athlete_id: ath2.id, workout_id: workout2.id, gym: "LA
 aw3=AthleteWorkout.create(athlete_id: ath3.id, workout_id: workout3.id, gym: "Crossfit PR Star", location: "Centreville, VA")
 aw4=AthleteWorkout.create(athlete_id: ath4.id, workout_id: workout4.id, gym: "Rudy's Roundhouse Kicking Emporium", location: "Boston, MA")
 aw5=AthleteWorkout.create(athlete_id: ath5.id, workout_id: workout5.id, gym: "That creepy gym on the corner", location: "Nowhereville, KS")
-
+aw7=AthleteWorkout.create(athlete_id: ath1.id, workout_id: workout3.id, gym: "Gold's Gym", location: "Dallas, TX")
 
 puts "successfully seeded database! woo!"
 

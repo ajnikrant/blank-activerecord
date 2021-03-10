@@ -101,7 +101,11 @@ class Interface
                   system 'clear'  
                 pp movement.exercises 
             prompt.select "" do |menu|
-            menu.choice "Save Workout to Favorites", -> {save_workout_to_athlete_helper(movement)}
+            menu.choice "Save Workout to Favorites", -> {save_workout_to_athlete_helper(movement) 
+            prompt.select "" do |menu|
+                menu.choice "Main Menu", -> {main_menu}
+            end
+        }
             menu.choice "Main Menu", -> {main_menu}
             end
             }
@@ -112,10 +116,11 @@ class Interface
 
     end
 
-    def save_workout_to_athlete_helper(workout_arg)
-        binding.pry
-        new_athleteworkout_instance= AthleteWorkout.create(athlete_id: athlete.id, workout_id: workout_arg.id, gym: "THIS HOUSE" )
-    
+    def save_workout_to_athlete_helper(movement)
+        # binding.pry
+        # person=self
+         @athlete.save_workout_to_athlete_helper_method(movement)
+        
     end
 
 

@@ -25,6 +25,19 @@ class Athlete < ActiveRecord::Base
         pass = STDIN.gets.chomp
         athlete_inst = Athlete.create(username: username, password: pass)
     end
+
+    def save_workout_to_athlete_helper_method(movement)
+        binding.pry
+        # people =person.id
+        workout = movement.id
+        system 'clear'
+        sleep 0.5
+        puts "What gym would you like to save this workout to?"
+        gym_arg = STDIN.gets.chomp
+        AthleteWorkout.create(athlete_id: self.id, workout_id: workout, gym: gym_arg)
+        
+        puts "This workout has been saved to your library!"
+    end
     
    
 

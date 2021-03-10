@@ -77,16 +77,15 @@ class Interface
     end
 
     def view_workout_helper
-        # puts "Here is the list of workouts available:"
-        # @workout = Workout.workout_helper_method
-
-
         x=Workout.all
         prompt.select "Select a workout to view details" do |menu|
-            for i in x do
-                menu.choice "#{i.name}", -> { pp i.exercises 
+            x.each do |movement|
+                menu.choice "#{movement.name}", -> { 
+                  system 'clear'  
+                pp movement.exercises 
             prompt.select "" do |menu|
             menu.choice "Main Menu", -> {main_menu}
+            
             end
             }
             end

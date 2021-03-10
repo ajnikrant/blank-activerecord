@@ -9,6 +9,13 @@ task :console do
   Pry.start
 end
 
+desc "Starts our fitness app"
+task :lets_get_physical do
+  interface=Interface.new
+  interface.run
+
+
+end
 
 namespace :remind_me_about do
 

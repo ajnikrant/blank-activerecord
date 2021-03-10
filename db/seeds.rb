@@ -123,11 +123,11 @@ we14_5=WorkoutExercise.create(workout_id: workout5.id, exercise_id: quads10.id)
 we15_5=WorkoutExercise.create(workout_id: workout5.id, exercise_id: abs4.id)
 
 ######Athletes
-ath1= Athlete.create(name:"Frank da Tank", age:24, years_of_experience:10, reason_for_training:"Lifestyle", ethnicity:"Italian", body_type:"Mesomorph", skill_level:"Advanced", weight_in_lbs:185, height_in_inches:71, preexisting_injuries:true)
-ath2= Athlete.create(name: "Simone Biles", age: 23)
-ath3= Athlete.create(name: "Tom Brady", age: 43)
-ath4= Athlete.create(name: "Michael Phelps", age: 35)
-ath5= Athlete.create(name: "Avril Lavigne", age: 32)
+ath1= Athlete.create(username: "frankt", password:"abc123", name:"Frank da Tank", age:24, years_of_experience:10, reason_for_training:"Lifestyle", ethnicity:"Italian", body_type:"Mesomorph", skill_level:"Advanced", weight_in_lbs:185, height_in_inches:71, preexisting_injuries:true)
+ath2= Athlete.create(username:"simoneb" , password:"abc123", name: "Simone Biles", age: 23)
+ath3= Athlete.create(username: "tomb", password:"abc123", name: "Tom Brady", age: 43)
+ath4= Athlete.create(username: "michaelp", password:"abc123", name: "Michael Phelps", age: 3.5)
+ath5= Athlete.create(username: "avrill" , password:"abc123", name: "Avril Lavigne", age: 32)
 
 #####ATHLETEWORKOUTS
 aw1=AthleteWorkout.create(athlete_id: ath1.id, workout_id: workout1.id, gym: "Gold's Gym", location: "Dallas, TX")

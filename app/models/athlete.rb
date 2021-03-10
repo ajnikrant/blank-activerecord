@@ -25,6 +25,9 @@ class Athlete < ActiveRecord::Base
         pass = STDIN.gets.chomp
         athlete_inst = Athlete.create(username: username, password: pass)
     end
+
+   
+
     
    
 

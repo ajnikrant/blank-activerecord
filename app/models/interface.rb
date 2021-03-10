@@ -113,10 +113,11 @@ class Interface
     end
 
     def save_workout_to_athlete_helper(workout_arg)
-        binding.pry
+        # binding.pry
         new_athleteworkout_instance= AthleteWorkout.create(athlete_id: athlete.id, workout_id: workout_arg.id, gym: "THIS HOUSE" )
     
     end
 
+    
 
 end

@@ -60,8 +60,9 @@ class Interface
     def full_exercise_menu
         x=view_exercise_helper
         prompt.select "Select an exercise to view details" do |menu|
-            for i in x do
-                menu.choice "#{i.name}", -> { pp i }
+            x.each do |exercise|
+                # binding.pry
+                menu.choice "#{exercise.name}", -> {helper_exercise_method(exercise) }
             end
             menu.choice "Main Menu", -> {main_menu}
         end

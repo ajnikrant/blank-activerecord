@@ -120,8 +120,8 @@ class Interface
         # binding.pry
         # person=self
          @athlete.save_workout_to_athlete_helper_method(movement)
-        
     end
 
+    
 
 end

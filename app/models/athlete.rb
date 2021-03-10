@@ -38,6 +38,8 @@ class Athlete < ActiveRecord::Base
         
         puts "This workout has been saved to your library!"
     end
+   
+
     
    
 

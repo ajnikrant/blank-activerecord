@@ -26,4 +26,7 @@ class Athlete < ActiveRecord::Base
         athlete_inst = Athlete.create(username: username, password: pass)
     end
     
+   
+
+
 end

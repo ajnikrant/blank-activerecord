@@ -57,23 +57,40 @@ class Interface
         main_menu
     end
     
-    def full_exercise_menu
-        x=view_exercise_helper
-        prompt.select "Select an exercise to view details" do |menu|
-            x.each do |exercise|
-                # binding.pry
-                menu.choice "#{exercise.name}", -> {helper_exercise_method(exercise) }
-            end
-            menu.choice "Main Menu", -> {main_menu}
-        end
-
-
-    end
+    
 
     def view_exercise_helper
         # puts "Here are all the available exercises:"
         # sleep(1.5)
       Exercise.all#.map{|exercise| exercise.name}
+    end
+    
+    def random_main_menu_helper
+        prompt.select "" do |menu|
+            menu.choice "Main Menu", -> {main_menu}
+        end
+    end
+
+    def full_exercise_menu
+        x=view_exercise_helper
+        prompt.select "Select an exercise to view details" do |menu|
+            x.each do |exercise|
+                # binding.pry
+                menu.choice "#{exercise.name}", -> {
+                    system 'clear'  
+                pp exercise 
+            prompt.select "" do |menu|
+            menu.choice "Main Menu", -> {main_menu}
+            
+            end
+                 }
+                 
+                end
+                system 'clear'
+            menu.choice "Main Menu", -> {main_menu}
+        end
+
+
     end
 
     def view_workout_helper
@@ -84,15 +101,22 @@ class Interface
                   system 'clear'  
                 pp movement.exercises 
             prompt.select "" do |menu|
+            menu.choice "Save Workout to Favorites", -> {save_workout_to_athlete_helper(movement)}
             menu.choice "Main Menu", -> {main_menu}
-            
             end
             }
             end
             menu.choice "Main Menu", -> {main_menu}
+            
         end
 
     end
 
+    def save_workout_to_athlete_helper(workout_arg)
+        binding.pry
+        new_athleteworkout_instance= AthleteWorkout.create(athlete_id: athlete.id, workout_id: workout_arg.id, gym: "THIS HOUSE" )
     
+    end
+
+
 end

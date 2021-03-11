@@ -46,7 +46,7 @@ class Interface
             menu.choice "View Workouts", -> {view_workout_helper}
             menu.choice "View or Complete Saved Workouts", -> {saved_workout_viewer}
             menu.choice "My Completed Workouts", -> {completed_workout_viewer}
-            menu.choice "Logout/Exit app", -> {puts "goodbye"}
+            menu.choice "Logout/Exit app", -> {puts "GAINZ CITY! See ya later!"}
         end
 
     end

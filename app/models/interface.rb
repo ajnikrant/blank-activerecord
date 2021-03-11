@@ -1,6 +1,3 @@
-# require_relative 'app/models/title_graphics.txt'
-#  require_all 'app'
-
 class Interface 
 
     attr_accessor :athlete
@@ -17,38 +14,36 @@ class Interface
     end
 
     def welcome
-        puts "Welcome to Full Stack Fitness"
-        puts "Let's get physical!!"
+        colorizer = Lolize::Colorizer.new
+        colorizer.write "\nWelcome to Full Stack Fitness"
+        colorizer.write "\nLet's get physical!!"
     end
 
 
      def ask_for_login_or_register
-         prompt.select "Would you like to login or register" do |menu|
+        colorizer = Lolize::Colorizer.new
+         prompt.select "\nWould you like to login or register" do |menu|
              menu.choice "Login", -> { login_helper }
              menu.choice "Register", -> {register_helper}
          end
      end
      
      def login_helper
-        puts "You chose login"
+        colorizer = Lolize::Colorizer.new
+        colorizer.write "\nYou chose login"
         @athlete = Athlete.login_helper_class_method
     end
 
     def register_helper
-        puts "You chose register"
+        colorizer = Lolize::Colorizer.new
+        colorizer.write "\nYou chose register"
         @athlete = Athlete.register_method
     end
-
-    #  def render_ascii_art_menu
-    #     File.readlines('title_graphics.txt') do |line|
-    #       puts line
-    #      end
-    #   end
       
     def main_menu
         @athlete.reload
         system 'clear' 
-        graphics                                                                                                                                                                                                                                                 
+        IntroGraphics.graphics                                                                                                                                                                                                                                      
         sleep 1
         puts "Welcome, #{@athlete.username}!"
         prompt.select "What do you want to do today?" do |menu|
@@ -56,23 +51,18 @@ class Interface
             menu.choice "View Workouts", -> {view_workout_helper}
             menu.choice "View or Complete Saved Workouts", -> {saved_workout_viewer}
             menu.choice "My Completed Workouts", -> {completed_workout_viewer}
-            menu.choice "Logout/Exit app", -> {puts "GAINZ CITY! See ya later!"}
+            menu.choice "Logout/Exit app", -> {goodbye_message}
         end
 
     end
 
-    def test
-        puts "test!"
-        sleep(1.5)
-        main_menu
+    def goodbye_message
+        colorizer = Lolize::Colorizer.new
+        colorizer.write"\nGAINZ CITY! See ya later!"
     end
-    
-    
 
     def view_exercise_helper
-        # puts "Here are all the available exercises:"
-        # sleep(1.5)
-      Exercise.all#.map{|exercise| exercise.name}
+      Exercise.all
     end
     
     def random_main_menu_helper
@@ -138,7 +128,12 @@ class Interface
                   system 'clear'  
                 pp athwork_inst.workout.exercises
             prompt.select "" do |menu|
-            menu.choice "Mark Workout as Completed", -> {mark_as_completed_helper(athwork_inst) 
+            menu.choice "Mark Workout as Completed", -> {mark_as_completed_helper(athwork_inst)
+            prompt.select "" do |menu|
+                menu.choice "Main Menu", -> {main_menu}
+            end
+        }
+            menu.choice "Delete this saved workout from your library", -> {delete_saved_workout(athwork_inst)
             prompt.select "" do |menu|
                 menu.choice "Main Menu", -> {main_menu}
             end
@@ -152,6 +147,12 @@ class Interface
         end
     end
 
+    def delete_saved_workout(athwork_inst)
+        @athlete.delete_saved_workout_method(athwork_inst)
+    end
+
+
+    
     def completed_workout_viewer
 
         x=completed_workout_helper
@@ -181,6 +182,5 @@ class Interface
 
     def completed_workout_helper
         @athlete.completed_workout_helper_method
-    end
-
+    end    
 end

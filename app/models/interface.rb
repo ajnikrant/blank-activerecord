@@ -117,8 +117,6 @@ class Interface
     end
 
     def save_workout_to_athlete_helper(movement)
-        # binding.pry
-        # person=self
          @athlete.save_workout_to_athlete_helper_method(movement)
     end
 

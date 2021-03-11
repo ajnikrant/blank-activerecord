@@ -27,8 +27,6 @@ class Athlete < ActiveRecord::Base
     end
 
     def save_workout_to_athlete_helper_method(movement)
-        binding.pry
-        # people =person.id
         workout = movement.id
         system 'clear'
         sleep 0.5

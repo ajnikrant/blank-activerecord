@@ -1,3 +1,6 @@
+# require_relative 'app/models/title_graphics.txt'
+#  require_all 'app'
+
 class Interface 
 
     attr_accessor :athlete
@@ -36,9 +39,16 @@ class Interface
         @athlete = Athlete.register_method
     end
 
+    #  def render_ascii_art_menu
+    #     File.readlines('title_graphics.txt') do |line|
+    #       puts line
+    #      end
+    #   end
+      
     def main_menu
         @athlete.reload
-        system 'clear'
+        system 'clear' 
+        graphics                                                                                                                                                                                                                                                 
         sleep 1
         puts "Welcome, #{@athlete.username}!"
         prompt.select "What do you want to do today?" do |menu|
@@ -120,14 +130,13 @@ class Interface
     end
 
     def saved_workout_viewer
-        ##pp @athlete.workouts
 
         x=@athlete.athlete_workouts
         prompt.select "View one of your saved workouts" do |menu|
             x.each do |athwork_inst|
                 menu.choice "#{athwork_inst.workout.name}", -> { 
                   system 'clear'  
-                pp athwork_inst.workout 
+                pp athwork_inst.workout.exercises
             prompt.select "" do |menu|
             menu.choice "Mark Workout as Completed", -> {mark_as_completed_helper(athwork_inst) 
             prompt.select "" do |menu|

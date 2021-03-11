@@ -84,7 +84,6 @@ class Interface
             
             end
                  }
-                 
                 end
                 system 'clear'
             menu.choice "Main Menu", -> {main_menu}
@@ -117,8 +116,6 @@ class Interface
     end
 
     def save_workout_to_athlete_helper(movement)
-        # binding.pry
-        # person=self
          @athlete.save_workout_to_athlete_helper_method(movement)
     end
 
@@ -150,16 +147,21 @@ class Interface
 
         x=completed_workout_helper
         prompt.select "Review your hardwork here!" do |menu|
-            x.each do |athwork_inst|
-                menu.choice "#{athwork_inst.workout.name}", -> { 
-                  system 'clear'  
-                pp athwork_inst.workout.exercises 
-            prompt.select "" do |menu|
-                menu.choice "Main Menu", -> {main_menu}
+            if x!=nil
+                x.each do |athwork_inst|
+                    menu.choice "#{athwork_inst.workout.name}", -> { 
+                    system 'clear'  
+                    pp athwork_inst.workout.exercises 
+                prompt.select "" do |menu|
+                    menu.choice "Main Menu", -> {main_menu}
+                end
+                 }
+                 end  
+                 menu.choice "Main Menu", -> {main_menu}
+            else 
+                sleep 5
+                main_menu
             end
-        }
-            menu.choice "Main Menu", -> {main_menu}
-          end  
         end
 
     end

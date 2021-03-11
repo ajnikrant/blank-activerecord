@@ -27,8 +27,6 @@ class Athlete < ActiveRecord::Base
     end
 
     def save_workout_to_athlete_helper_method(movement)
-        binding.pry
-        # people =person.id
         workout = movement.id
         system 'clear'
         sleep 0.5
@@ -46,7 +44,13 @@ class Athlete < ActiveRecord::Base
     end
 
     def completed_workout_helper_method
-        athlete_workouts.select{|workout| workout.completed == true}
+        if athlete_workouts.length > 0
+            athlete_workouts.select{|workout| workout.completed == true}
+        else
+            puts "You do not currently have any workouts saved."
+                puts "Bringing you back to the main menu..."
+
+        end
     end
    
 

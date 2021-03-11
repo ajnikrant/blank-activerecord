@@ -40,7 +40,14 @@ class Athlete < ActiveRecord::Base
     end
    
 
-    
+    def mark_as_completed_helper_method(athwork_inst)
+        athwork_inst.update(completed: true)
+        puts "Your workout has been marked as completed! Great Job!"
+    end
+
+    def completed_workout_helper_method
+        athlete_workouts.select{|workout| workout.completed == true}
+    end
    
 
 

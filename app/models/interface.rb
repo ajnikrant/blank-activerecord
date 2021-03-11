@@ -44,9 +44,9 @@ class Interface
         prompt.select "What do you want to do today?" do |menu|
             menu.choice "View Exercises", -> {full_exercise_menu}
             menu.choice "View Workouts", -> {view_workout_helper}
-            menu.choice "View or Complete Saved Workouts", -> {saved_workout_helper}
-            menu.choice "My Completed Workouts", -> {completed_workout_helper}
-            menu.choice "Logout/Exit app", -> {puts "goodbye"}
+            menu.choice "View or Complete Saved Workouts", -> {saved_workout_viewer}
+            menu.choice "My Completed Workouts", -> {completed_workout_viewer}
+            menu.choice "Logout/Exit app", -> {puts "GAINZ CITY! See ya later!"}
         end
 
     end
@@ -120,6 +120,54 @@ class Interface
          @athlete.save_workout_to_athlete_helper_method(movement)
     end
 
-    
+    def saved_workout_viewer
+        ##pp @athlete.workouts
+
+        x=@athlete.athlete_workouts
+        prompt.select "View one of your saved workouts" do |menu|
+            x.each do |athwork_inst|
+                menu.choice "#{athwork_inst.workout.name}", -> { 
+                  system 'clear'  
+                pp athwork_inst.workout 
+            prompt.select "" do |menu|
+            menu.choice "Mark Workout as Completed", -> {mark_as_completed_helper(athwork_inst) 
+            prompt.select "" do |menu|
+                menu.choice "Main Menu", -> {main_menu}
+            end
+        }
+            menu.choice "Main Menu", -> {main_menu}
+            end
+            }
+            end
+            menu.choice "Main Menu", -> {main_menu}
+            
+        end
+    end
+
+    def completed_workout_viewer
+
+        x=completed_workout_helper
+        prompt.select "Review your hardwork here!" do |menu|
+            x.each do |athwork_inst|
+                menu.choice "#{athwork_inst.workout.name}", -> { 
+                  system 'clear'  
+                pp athwork_inst.workout.exercises 
+            prompt.select "" do |menu|
+                menu.choice "Main Menu", -> {main_menu}
+            end
+        }
+            menu.choice "Main Menu", -> {main_menu}
+          end  
+        end
+
+    end
+
+    def mark_as_completed_helper(athwork_inst)
+        @athlete.mark_as_completed_helper_method(athwork_inst)
+    end
+
+    def completed_workout_helper
+        @athlete.completed_workout_helper_method
+    end
 
 end

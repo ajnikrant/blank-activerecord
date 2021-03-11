@@ -91,11 +91,44 @@ back9=Exercise.create(name:"overhead ball slam" , recommended_reps:8 , muscle_gr
 back10=Exercise.create(name:"kipping muscle up" , recommended_reps:5 , muscle_group: "back" , skill_level: "advanced" , youtube_url:"https://www.youtube.com/watch?v=OCg3UXgzftc" )
 
 #workouts
-workout1=Workout.create(name: "arm destroyer")
-workout2=Workout.create(name: "leg torturer")
-workout3=Workout.create(name: "core burner")
-workout4=Workout.create(name: "chest oblitorator")
-workout5=Workout.create(name: 'full body blaster')
+workout1=Workout.create(name: "Arm Destroyer")
+workout2=Workout.create(name: "Leg Torturer")
+workout3=Workout.create(name: "Core Burner")
+workout4=Workout.create(name: "Chest Oblitorator")
+workout5=Workout.create(name: 'Full Body Blaster')
+workout6=Workout.create(name: "Beginner Arm Workout")
+workout7=Workout.create(name: "Beginner Lower Body Workout")
+workout8=Workout.create(name: "Intermediate Core Workout")
+workout9=Workout.create(name: "Workout To Do While Watching Netflix")
+workout10=Workout.create(name: "Advanced Athletes Only Workout")
+
+# Advanced Athletes Only Workout
+we28_10=WorkoutExercise.create(workout_id: workout10.id, exercise_id: back10.id)
+we29_10=WorkoutExercise.create(workout_id: workout10.id, exercise_id: back3.id)
+we30_10=WorkoutExercise.create(workout_id: workout10.id, exercise_id: ham4.id)
+we31_10=WorkoutExercise.create(workout_id: workout10.id, exercise_id: chest6.id)
+we32_10=WorkoutExercise.create(workout_id: workout10.id, exercise_id: arms9.id)
+
+
+# Workout To Do While Watching Netflix
+we25_9=WorkoutExercise.create(workout_id: workout9.id, exercise_id: quads3.id)
+we26_9=WorkoutExercise.create(workout_id: workout9.id, exercise_id: chest7.id)
+we27_9=WorkoutExercise.create(workout_id: workout9.id, exercise_id: abs8.id)
+
+# Intermediate Core Workout
+we22_8=WorkoutExercise.create(workout_id: workout8.id, exercise_id: abs1.id)
+we23_8=WorkoutExercise.create(workout_id: workout8.id, exercise_id: abs6.id)
+we24_8=WorkoutExercise.create(workout_id: workout8.id, exercise_id: abs5.id)
+
+# Beginner Lower Body Workout
+we19_7=WorkoutExercise.create(workout_id: workout7.id, exercise_id: quads5.id)
+we20_7=WorkoutExercise.create(workout_id: workout7.id, exercise_id: glute9.id)
+we21_7=WorkoutExercise.create(workout_id: workout7.id, exercise_id: ham2.id)
+
+#Beginner arm w.o.
+we16_6=WorkoutExercise.create(workout_id: workout6.id, exercise_id: arms1.id)
+we17_6=WorkoutExercise.create(workout_id: workout6.id, exercise_id: arms3.id)
+we18_6=WorkoutExercise.create(workout_id: workout6.id, exercise_id: arms7.id)
 
 #arm destroyer
 we1_1=WorkoutExercise.create(workout_id: workout1.id, exercise_id: arms10.id)
@@ -103,23 +136,23 @@ we2_1=WorkoutExercise.create(workout_id: workout1.id, exercise_id: arms9.id)
 we3_1=WorkoutExercise.create(workout_id: workout1.id, exercise_id: arms4.id)
 
 #leg torturer
-we4_2=WorkoutExercise.create(workout_id: workout2.id, exercise_id: glute6.id)
-we5_2=WorkoutExercise.create(workout_id: workout2.id, exercise_id: quads6.id)
-we6_2=WorkoutExercise.create(workout_id: workout2.id, exercise_id: quads7.id)
+we4_2=WorkoutExercise.create(workout_id: workout2.id, exercise_id: glute7.id)
+we5_2=WorkoutExercise.create(workout_id: workout2.id, exercise_id: quads10.id)
+we6_2=WorkoutExercise.create(workout_id: workout2.id, exercise_id: ham6.id)
 
 #core burner
-we7_3=WorkoutExercise.create(workout_id: workout3.id, exercise_id: abs1.id)
+we7_3=WorkoutExercise.create(workout_id: workout3.id, exercise_id: abs2.id)
 we8_3=WorkoutExercise.create(workout_id: workout3.id, exercise_id: abs9.id)
-we9_3=WorkoutExercise.create(workout_id: workout3.id, exercise_id: abs6.id)
+we9_3=WorkoutExercise.create(workout_id: workout3.id, exercise_id: abs10.id)
 
 #chest oblitorator
-we10_4=WorkoutExercise.create(workout_id: workout4.id, exercise_id: chest1.id)
-we11_4=WorkoutExercise.create(workout_id: workout4.id, exercise_id: chest5.id)
+we10_4=WorkoutExercise.create(workout_id: workout4.id, exercise_id: chest6.id)
+we11_4=WorkoutExercise.create(workout_id: workout4.id, exercise_id: chest9.id)
 we12_4=WorkoutExercise.create(workout_id: workout4.id, exercise_id: chest10.id)
 
 #full body blaster
 we13_5=WorkoutExercise.create(workout_id: workout5.id, exercise_id: arms3.id)
-we14_5=WorkoutExercise.create(workout_id: workout5.id, exercise_id: quads10.id)
+we14_5=WorkoutExercise.create(workout_id: workout5.id, exercise_id: quads9.id)
 we15_5=WorkoutExercise.create(workout_id: workout5.id, exercise_id: abs4.id)
 
 ######Athletes

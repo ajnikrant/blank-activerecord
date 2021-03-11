@@ -48,12 +48,13 @@ class Athlete < ActiveRecord::Base
     end
 
     def completed_workout_helper_method
-        colorizer = Lolize::Colorizer.new
-        if athlete_workouts.length > 0
+
+        if self.athlete_workouts.length > 0
             athlete_workouts.select{|workout| workout.completed == true}
         else
-            colorizer.write "\nYou do not currently have any workouts saved."
-                colorizer.write "\nBringing you back to the main menu..."
+            
+            puts "\nYou do not currently have any workouts saved.".red
+                puts "\nBringing you back to the main menu...".yellow
 
         end
     end
@@ -65,6 +66,17 @@ class Athlete < ActiveRecord::Base
         colorizer.write "\nThis workout has been deleted from your favorites!"
     end
    
+       #athwork_inst.update(completed: true)
+    def profile_field_editor_method(update_field_arg)
+        # binding.pry
+        puts "Please enter your new #{update_field_arg}:"
+        new_arg = STDIN.gets.chomp
+
+        self.update(update_field_arg.to_sym => new_arg)
+
+        puts "Your change has been saved"
+        sleep(1.5)
+    end
 
 
 end

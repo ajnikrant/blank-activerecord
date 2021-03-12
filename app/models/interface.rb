@@ -76,7 +76,7 @@ class Interface
             menu.choice "Name: #{@athlete.name}", -> {profile_field_editor("name")}
             menu.choice "Username: #{@athlete.username}",-> {profile_field_editor("username")}
             menu.choice "Password: (Encrypted)",-> {profile_field_editor("password")}
-            menu.choice "Age: #{@athlete.age}", -> {#age_tidbit
+            menu.choice "Age: #{@athlete.age}", -> {age_tidbit
                                                     profile_field_editor("age")}
             menu.choice "Years of Experience: #{@athlete.years_of_experience}", -> {profile_field_editor("years_of_experience")}
             menu.choice "Reason for Training: #{@athlete.reason_for_training}", -> {profile_field_editor("reason_for_training")}
@@ -254,26 +254,31 @@ class Interface
 
     end
 
-#     def age_tidbit
-#         if athlete.age != nil 
-#         puts "Fun fact..."
-#         sleep(2)
-#         x=Athlete.all.map{|athlete_inst|athlete_inst.age}
-#         max_age=x.find_index(x.max)
-#         min_age=x.find_index(x.min)
-#         if @athlete.age > max_age 
-#            puts "You have #{@athlete.age-max_age} years on the oldest athlete on the app \n
-#            and \n
-#            You have #{@athlete.age-min_age} years on the youngest athlete on the app. You inspire us all you old fart!"
-#         elsif @athlete.age > min_age && @athlete.age < max_age
-#             puts "You have #{@athlete.age-min_age} years on the youngest athlete on the app \n
-#             and are #{max_age-@athlete.age} years younger than the oldest athlete on the app. 
-#             Great job staying active! "
-#         elsif @athlete.age < min_age
-#             "You are #{max_age-@athlete.age} years younger than the oldest athlete on the app. Great job starting early!"
-#         end
-#     end
-# end
+    def age_tidbit
+        if athlete.age != nil 
+        puts "Fun fact..."
+        sleep(2)
+        x=Athlete.all.map{|athlete_inst|athlete_inst.age}
+        max_age=x.max
+        min_age=x.min
+        # binding.pry
+        if @athlete.age > max_age 
+           puts "You are the oldest athlete on the app by #{@athlete.age-max_age} years \n
+           and \n
+           You are #{@athlete.age-min_age} years older than the youngest athlete on the app. You inspire us all you old fart!"
+        elsif @athlete.age > min_age && @athlete.age < max_age
+            puts "You are #{@athlete.age-min_age} years older than the youngest athlete on the app \n
+            and are #{max_age-@athlete.age} years younger than the oldest athlete on the app. 
+            Great job staying active! "
+        elsif @athlete.age == max_age
+            puts "You are the oldest athlete using this app!"
+        elsif @athlete.age == min_age
+            puts "You are the youngest athlete using this app!"
+        elsif @athlete.age < min_age
+            "You are #{max_age-@athlete.age} years younger than the oldest athlete on the app. Great job starting early!"
+        end
+    end
+end
 
 
 

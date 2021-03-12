@@ -25,7 +25,9 @@ class Athlete < ActiveRecord::Base
         username = STDIN.gets.chomp
         puts "What is your password?"
         pass = STDIN.gets.chomp
-        athlete_inst = Athlete.create(username: username, password: pass)
+        puts "What is your age?"
+        age_arg = STDIN.gets.chomp
+        athlete_inst = Athlete.create(username: username, password: pass, age: age_arg)
     end
 
     def save_workout_to_athlete_helper_method(movement)

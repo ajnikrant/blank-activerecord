@@ -79,12 +79,13 @@ class Athlete < ActiveRecord::Base
     end
 
     def delete_account_in_class
-        puts "Deleting all account data..."
+        colorizer = Lolize::Colorizer.new
+        colorizer.write "\nDeleting all account data...\n"
         sleep (4)
         self.destroy
-        puts "Account Deletion completed"
+        colorizer.write "\nAccount Deletion completed\n"
         sleep(1)
-        puts "Gains...are not forever. Come back soon!"
+        colorizer.write "\nGains...are not forever. Come back soon!\n"
         sleep(3)
     end
 

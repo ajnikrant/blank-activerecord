@@ -78,5 +78,14 @@ class Athlete < ActiveRecord::Base
         sleep(1.5)
     end
 
+    def delete_account_in_class
+        puts "Deleting all account data..."
+        sleep (4)
+        self.destroy
+        puts "Account Deletion completed"
+        sleep(1)
+        puts "Gains...are not forever. Come back soon!"
+        sleep(3)
+    end
 
 end

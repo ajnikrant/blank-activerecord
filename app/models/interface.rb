@@ -51,9 +51,23 @@ class Interface
             menu.choice "View or Complete Saved Workouts", -> {saved_workout_viewer}
             menu.choice "My Completed Workouts", -> {completed_workout_viewer}
             menu.choice "View/Edit your Profile", -> {profile_editor_menu}
+            menu.choice "Delete your Account", -> {delete_account_helper}
             menu.choice "Logout/Exit app", -> {goodbye_message}
         end
 
+    end
+
+    def delete_account_helper
+        prompt.select "Are you sure that you would like to delete your account and data?" do |menu|
+            menu.choice "Yes", -> {delete_account_method
+        run
+    }
+            menu.choice "No - Return to Main Menu", -> {main_menu}
+        end
+    end
+
+    def delete_account_method
+        @athlete.delete_account_in_class
     end
     
     #athwork_inst.update(completed: true)
@@ -62,7 +76,8 @@ class Interface
             menu.choice "Name: #{@athlete.name}", -> {profile_field_editor("name")}
             menu.choice "Username: #{@athlete.username}",-> {profile_field_editor("username")}
             menu.choice "Password: (Encrypted)",-> {profile_field_editor("password")}
-            menu.choice "Age: #{@athlete.age}", -> {profile_field_editor("age")}
+            menu.choice "Age: #{@athlete.age}", -> {#age_tidbit
+                                                    profile_field_editor("age")}
             menu.choice "Years of Experience: #{@athlete.years_of_experience}", -> {profile_field_editor("years_of_experience")}
             menu.choice "Reason for Training: #{@athlete.reason_for_training}", -> {profile_field_editor("reason_for_training")}
             menu.choice "Ethnicity: #{@athlete.ethnicity}", -> {profile_field_editor("ethnicity")}
@@ -178,8 +193,9 @@ class Interface
 
     
     def completed_workout_viewer
-
         x=completed_workout_helper
+        rep_count_tidbit(x)
+        sleep(1)
         prompt.select "Review your hardwork here!" do |menu|
             if x!=nil
                 x.each do |athwork_inst|
@@ -206,5 +222,59 @@ class Interface
 
     def completed_workout_helper
         @athlete.completed_workout_helper_method
-    end    
+    end
+    
+    def rep_count_tidbit(x)
+        
+        if x!=nil
+            sleep(1)
+        puts "Fun fact: You've completed #{completed_rep_count(x)} total reps! Keep it up!".yellow
+        sleep(1)
+        end
+    end
+
+    def completed_rep_count(x)
+    workout_inst_array=[]
+    reps=[]
+     workout_ids=[]
+        x.map do |athwork_inst|
+        workout_ids << athwork_inst.workout_id
+        end
+    workout_ids.each do |id_num|
+     y = Workout.all.find_by(id: id_num)
+     workout_inst_array << y
+    end
+    workout_inst_array.each do |workout_inst|
+        workout_inst.exercises.map do |exercise|
+           reps <<  exercise.recommended_reps
+        end
+    end
+
+    reps.reduce(0){|sum,num|sum+num}
+
+    end
+
+#     def age_tidbit
+#         if athlete.age != nil 
+#         puts "Fun fact..."
+#         sleep(2)
+#         x=Athlete.all.map{|athlete_inst|athlete_inst.age}
+#         max_age=x.find_index(x.max)
+#         min_age=x.find_index(x.min)
+#         if @athlete.age > max_age 
+#            puts "You have #{@athlete.age-max_age} years on the oldest athlete on the app \n
+#            and \n
+#            You have #{@athlete.age-min_age} years on the youngest athlete on the app. You inspire us all you old fart!"
+#         elsif @athlete.age > min_age && @athlete.age < max_age
+#             puts "You have #{@athlete.age-min_age} years on the youngest athlete on the app \n
+#             and are #{max_age-@athlete.age} years younger than the oldest athlete on the app. 
+#             Great job staying active! "
+#         elsif @athlete.age < min_age
+#             "You are #{max_age-@athlete.age} years younger than the oldest athlete on the app. Great job starting early!"
+#         end
+#     end
+# end
+
+
+
 end
